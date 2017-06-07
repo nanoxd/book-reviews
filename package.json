@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "add:book": "node util/add-book.js",
     "dev": "next",
     "build": "next build",
     "start": "next start",
