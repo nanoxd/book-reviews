@@ -1,11 +1,11 @@
 {
   "books": [
     {
-      "slug": "marie-kondo-life-changing-magic-of-tidying-up",
+      "author": "Marie Kondo",
       "title": "The Life-Changing Magic of Tidying Up",
       "subtitle": "The Japanese Art of Decluttering and Organizing",
-      "authorName": "Marie Kondo",
-      "imageUrl": "http://www.amynewnostalgia.com/wp-content/uploads/2015/04/LIFE-CHANGING-TIDYING-UP.jpg"
+      "imageUrl": "http://www.amynewnostalgia.com/wp-content/uploads/2015/04/LIFE-CHANGING-TIDYING-UP.jpg",
+      "slug": "marie-kondo-the-life-changing-magic-of-tidying-up"
     }
   ]
 }
