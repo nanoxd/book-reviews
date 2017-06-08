@@ -18,6 +18,8 @@ String.prototype.toTitleCase = function(withLowers = true) {
     return string
 }
 
+const stringify = data => JSON.stringify(data, null, 2)
+
 const authorQuestion = {
   name: 'author',
   message: 'Author',
@@ -48,8 +50,24 @@ const saveQuestion = {
   message: 'Save?',
 }
 
+const bookFile = path.resolve(__dirname, '../data/books.json')
+
+const appendBook = (book, filename = bookFile) => {
+  const file = fs.readFileSync(filename)
+
+  let data = JSON.parse(file)
+  data.books.push(book)
+
+  const json = stringify(data)
+  fs.writeFileSync(filename, json)
+}
+
 inquirer.prompt([authorQuestion, titleQuestion, subtitleQuestion, imageQuestion, saveQuestion])
   .then(answers => {
-    console.log(answers)
+    if (answers.shouldSave) {
+      console.log(answers)
+      delete answers.shouldSave
+      appendBook(answers)
+    }
   })
   .catch(err => console.log(err))
