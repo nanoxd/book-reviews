@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const inquirer = require('inquirer')
+const R = require('ramda')
 
 String.prototype.toTitleCase = function(withLowers = true) {
     const lowers = ['A', 'An', 'The', 'At', 'By', 'For', 'In', 'Of', 'On', 'To', 'Up', 'And', 'As', 'But', 'Or', 'Nor', 'Not']
@@ -51,6 +52,12 @@ const saveQuestion = {
 }
 
 const bookFile = path.resolve(__dirname, '../data/books.json')
+
+const nullIfEmpty = R.ifElse(
+  R.isEmpty,
+  R.always(null),
+  R.identity
+)
 
 const appendBook = (book, filename = bookFile) => {
   const file = fs.readFileSync(filename)
