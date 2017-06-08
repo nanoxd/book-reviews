@@ -66,11 +66,33 @@ const sanitizeParams = {
 
 const sanitize = R.evolve(sanitizeParams)
 
+const slugify = R.compose(
+  // Remove any leftover symbols
+  R.replace(/[^\w\s-]/g, ''),
+  // Replace spaces with a '-'
+  R.replace(/\s+/g, '-'),
+  R.trim,
+  R.toLower
+)
+
+const bookSlug = R.compose(
+  slugify,
+  R.join(' '),
+  R.props(['author', 'title'])
+)
+
 const appendBook = (book, filename = bookFile) => {
+  const slug = bookSlug(book)
+  const newBook = R.compose(
+    R.assoc('slug', slug),
+    sanitize
+  )(book)
+
   const file = fs.readFileSync(filename)
 
   let data = JSON.parse(file)
-  data.books.push(sanitize(book))
+
+  data.books.push(newBook)
 
   const json = stringify(data)
   fs.writeFileSync(filename, json)
