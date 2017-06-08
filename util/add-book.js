@@ -81,6 +81,11 @@ const bookSlug = R.compose(
   R.props(['author', 'title'])
 )
 
+const readToJSON = R.compose(
+  JSON.parse,
+  fs.readFileSync
+)
+
 const appendBook = (book, filename = bookFile) => {
   const slug = bookSlug(book)
   const newBook = R.compose(
@@ -88,10 +93,7 @@ const appendBook = (book, filename = bookFile) => {
     sanitize
   )(book)
 
-  const file = fs.readFileSync(filename)
-
-  let data = JSON.parse(file)
-
+  let data = readToJSON(filename)
   data.books.push(newBook)
 
   const json = stringify(data)
