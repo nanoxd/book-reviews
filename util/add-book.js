@@ -59,11 +59,18 @@ const nullIfEmpty = R.ifElse(
   R.identity
 )
 
+const sanitizeParams = {
+  author: nullIfEmpty,
+  subtitle: nullIfEmpty,
+}
+
+const sanitize = R.evolve(sanitizeParams)
+
 const appendBook = (book, filename = bookFile) => {
   const file = fs.readFileSync(filename)
 
   let data = JSON.parse(file)
-  data.books.push(book)
+  data.books.push(sanitize(book))
 
   const json = stringify(data)
   fs.writeFileSync(filename, json)
@@ -72,9 +79,10 @@ const appendBook = (book, filename = bookFile) => {
 inquirer.prompt([authorQuestion, titleQuestion, subtitleQuestion, imageQuestion, saveQuestion])
   .then(answers => {
     if (answers.shouldSave) {
-      console.log(answers)
       delete answers.shouldSave
       appendBook(answers)
+    } else {
+      console.log('Cancelled')
     }
   })
-  .catch(err => console.log(err))
+  .catch(console.log)
