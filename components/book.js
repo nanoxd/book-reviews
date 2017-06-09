@@ -1,4 +1,4 @@
-export default ({ title = 'Book Title', imageUrl }) =>
+export default ({ title, imageUrl, author }) =>
   <div>
     {imageUrl && <img src={imageUrl} />}
     <h3>{title}</h3>
@@ -16,6 +16,7 @@ export default ({ title = 'Book Title', imageUrl }) =>
 
       h3 {
         font-size: 1rem;
+        text-align: center;
       }
     `}</style>
   </div>
