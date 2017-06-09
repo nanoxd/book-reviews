@@ -1,5 +1,5 @@
-export default ({ title, imageUrl, author }) =>
-  <div>
+export default ({ title, imageUrl, author, slug }) =>
+  <div key={slug}>
     {imageUrl && <img src={imageUrl} />}
     <h3>{title}</h3>
     <style jsx>{`
