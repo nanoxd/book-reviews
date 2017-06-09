@@ -4,6 +4,7 @@ export default ({ children }) =>
   <div>
     <Head>
       <title>Fernando's Book Reviews</title>
+      <meta name='viewport' content='initial-scale=1.0, width=device-width' />
     </Head>
 
     { children }
