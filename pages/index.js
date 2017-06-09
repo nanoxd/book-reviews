@@ -6,6 +6,7 @@ import { books } from '../data/books.json'
 const bookObjects = books.map(Book)
 
 
-export default () => <Layout>
-  <Shelf books={bookObjects} />
-</Layout>
+export default () =>
+  <Layout>
+    <Shelf books={bookObjects} />
+  </Layout>
