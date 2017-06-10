@@ -1,13 +1,26 @@
+import Link from 'next/link'
+
 export default ({ title, imageUrl, author, slug }) =>
   <div key={slug}>
-    {imageUrl && <img src={imageUrl} />}
-    <h3>{title}</h3>
+    <Link href={`/review?slug=${slug}`} as={`/review/${slug}`}>
+      <a>
+
+        {imageUrl && <img src={imageUrl} />}
+        <h3>{title}</h3>
+      </a>
+    </Link>
     <style jsx>{`
       div {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+        text-align: center;
       }
 
       img {
