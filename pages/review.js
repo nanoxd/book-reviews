@@ -1,5 +1,6 @@
 import R from 'ramda'
 import ColorThief from '@mariotacke/color-thief'
+import colorPairs from 'color-pairs-picker'
 import Layout from '../components/layout'
 import { books } from '../data/books.json'
 
@@ -21,14 +22,21 @@ export default class extends React.Component {
 
   constructor () {
     super()
-    this.state = { color: 'white' }
+    this.state = {
+      backgroundColor: 'white',
+      color: 'black'
+    }
   }
 
   componentDidMount () {
     const cover = document.getElementById('book-cover')
-    const color = colorForCover(cover)
+    const backgroundColor = colorForCover(cover)
+    const color = colorPairs(backgroundColor).fg
 
-    this.setState({ color: color })
+    this.setState({
+      backgroundColor,
+      color
+    })
   }
 
   get titleHeader () {
@@ -40,16 +48,32 @@ export default class extends React.Component {
     const { book } = this.props
     const { title, author, imageUrl } = book
 
-    return <div style={{ backgroundColor: this.state.color }}>
-      <h1>{ this.titleHeader }</h1>
+    return <div style={{ backgroundColor: this.state.backgroundColor, color: this.state.color }}>
       <img id="book-cover" src={imageUrl} />
+      <h1>{ this.titleHeader }</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
       <style jsx>{`
         div {
-          color: black;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          margin: 0;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        img {
+          height: 80vh;
+        }
+
+        p {
+          margin: 1rem;
         }
       `}</style>
     </div>
