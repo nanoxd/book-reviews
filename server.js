@@ -18,7 +18,6 @@ app.prepare()
 .then(() => {
   createServer((req, res) => {
     const { pathname, query } = parse(req.url, true)
-    console.log(pathname)
     const params = match(pathname)
 
     const rootStaticFiles = [
@@ -26,7 +25,6 @@ app.prepare()
     ]
 
     if (pathname.isIncluded(rootStaticFiles)) {
-      console.log("We're In")
       const staticPath = path.join(__dirname, 'static', pathname)
       app.serveStatic(req, res, staticPath)
       return
