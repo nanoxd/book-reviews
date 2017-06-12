@@ -29,7 +29,7 @@ export default class extends React.Component {
   }
 
   componentDidMount () {
-    const cover = document.getElementById('book-cover')
+    const cover = document.getElementById('Review--cover')
     const backgroundColor = colorForCover(cover)
     const color = colorPairs(backgroundColor).fg
 
@@ -46,34 +46,39 @@ export default class extends React.Component {
 
   render () {
     const { book } = this.props
-    const { title, author, imageUrl } = book
+    const { title, author, imageUrl, subtitle } = book
 
     return <Layout>
-      <div style={{ backgroundColor: this.state.backgroundColor, color: this.state.color }}>
-        <img id="book-cover" src={imageUrl} />
-        <h1>{ this.titleHeader }</h1>
+      <div className='Review' style={{ backgroundColor: this.state.backgroundColor, color: this.state.color }}>
+        <h1 className='Review--title'>{ this.titleHeader }</h1>
+        <img id="Review--cover" src={imageUrl} />
+
+        {subtitle && <h3 className='Review--subtitle'>{ subtitle }</h3>}
+
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua.
         </p>
         <style jsx>{`
-          div {
+          .Review {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
           }
 
-          h1 {
+          .Review--title {
             font-size: 1.5rem;
           }
 
-          img {
-            height: 80vh;
+          #Review--cover {
+            max-height: 80vh;
+            max-width: 90vw;
           }
 
           p {
             margin: 1rem;
+            text-align: center;
           }
         `}</style>
       </div>
