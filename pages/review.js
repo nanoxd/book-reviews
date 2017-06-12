@@ -48,45 +48,35 @@ export default class extends React.Component {
     const { book } = this.props
     const { title, author, imageUrl } = book
 
-    return <div style={{ backgroundColor: this.state.backgroundColor, color: this.state.color }}>
-      <img id="book-cover" src={imageUrl} />
-      <h1>{ this.titleHeader }</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
-      <style jsx>{`
-        div {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-          margin: 0;
-        }
+    return <Layout>
+      <div style={{ backgroundColor: this.state.backgroundColor, color: this.state.color }}>
+        <img id="book-cover" src={imageUrl} />
+        <h1>{ this.titleHeader }</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <style jsx>{`
+          div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          }
 
-        h1 {
-          font-size: 1.5rem;
-        }
+          h1 {
+            font-size: 1.5rem;
+          }
 
-        img {
-          height: 80vh;
-        }
+          img {
+            height: 80vh;
+          }
 
-        p {
-          margin: 1rem;
-        }
-      `}</style>
-    </div>
+          p {
+            margin: 1rem;
+          }
+        `}</style>
+      </div>
+    </Layout>
   }
 }
-// export default ({ url: { query: { slug }}}) =>
-//   <Layout>
-//     <div>
-//       {console.log(slug)}
-//       <style jsx>{`
-//         div {
-//           color: white;
-//         }
-//       `}</style>
-//     </div>
-//   </Layout>
