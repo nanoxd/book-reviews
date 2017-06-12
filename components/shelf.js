@@ -1,8 +1,8 @@
 export default ({ books = [] }) =>
-  <div>
+  <div className="Shelf">
     { books }
     <style jsx>{`
-      div {
+       .Shelf {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 1rem;
@@ -11,19 +11,19 @@ export default ({ books = [] }) =>
       }
 
       @media screen and (min-width: 650px) {
-        div {
+        .Shelf {
           grid-template-columns: 1fr 1fr 1fr;
         }
       }
 
       @media screen and (min-width: 860px) {
-        div {
+        .Shelf {
           grid-template-columns: 1fr 1fr 1fr 1fr;
         }
       }
 
       @media screen and (min-width: 1080px) {
-        div {
+        .Shelf {
           grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         }
       }
